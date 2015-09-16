@@ -1,0 +1,74 @@
+// ==========================================================================================
+// Base
+// ==========================================================================================
+
+html {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 13px;
+}
+
+*, *:before, *:after{
+ 	box-sizing: inherit;
+}
+
+// a11y - only display outlines for tabbing
+*:active, *:focus {
+	outline: 0;
+}
+
+*:active.keyboard-outline, *:focus.keyboard-outline {
+	outline: thin dotted;
+  	outline: 5px auto -webkit-focus-ring-color;
+  	outline-offset: -1px;
+}
+
+input,
+button,
+select,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+img {
+	vertical-align: middle;
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+	
+	&:hover, &:focus, &:active {
+		background-color: #FFF;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
+		clip: auto !important;
+		color: #333;
+		display: block;
+		font-family: Arial, sans-serif;
+		font-size: 14px;
+		font-weight: bold;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000;
+	}
+}
+
+[role="button"] {
+ 	cursor: pointer;
+}

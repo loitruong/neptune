@@ -1,0 +1,26 @@
+/*!
+Theme Name: Loft
+Author: Whitetail
+Author URI: http://whitetail.io
+Description: A beautifully responsive rofessional. Developed by Loi Truong & Joseph Fusco.
+Version: 1.0.0
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: loft
+Domain Path: /languages/
+Tags:
+*/
+
+// Core variables and mixins
+@import "partials/variables";
+@import "partials/mixins";
+
+// Reset and dependencies
+@import "partials/normalize";
+@import "partials/print";
+
+// Core styles
+@import "partials/base";
+@import "partials/type";
+@import "partials/grid";
+@import "partials/main";

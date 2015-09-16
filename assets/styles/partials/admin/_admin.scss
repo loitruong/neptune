@@ -1,0 +1,77 @@
+//main style for admin (backend)
+*, *:before, *:after{
+	-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;
+}
+.clearfix{
+	&:before, &:after{
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+.display-none{
+	display: none;
+}
+.layout{
+	margin: 20px 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	.sortable{
+		border: 1px solid black;
+		min-height: 48px;
+		padding: 10px;
+		>div{
+			display: inline-block;
+			border: 1px solid grey;
+			padding: 3px 5px;
+			cursor: pointer;
+			margin-right: 10px;
+			width: 100px !important;
+			text-align: center;
+		}
+	}
+	.draggable{
+		display: inline-block;
+		border: 1px solid grey;
+		padding: 3px 5px;
+		cursor: pointer;
+		margin-right: 10px;
+		width: 100px !important;
+		text-align: center;
+		&.display-none{
+			display: none;
+		}
+	}
+	.cover{
+		text-align: center;
+		background: gray;
+		color: white;
+		padding: 15px 0;
+	}
+	.target{
+		border-color: $color-blue;
+	}
+}
+.layout-2{
+	.dummy-logo .cover{
+		padding: 45px 0;
+	}
+	.sortable{
+		margin-bottom: 10px;
+	}
+}
+.header-options{
+	margin: 10px 0;
+	>div{
+		display: inline-block;
+		border: 1px solid grey;
+		padding: 3px 5px;
+		cursor: pointer;
+		width: 100px;
+		text-align: center;
+	}
+}
