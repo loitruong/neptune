@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package loft
+ * @package neptune
  */
 
 get_header(); ?>
@@ -24,46 +24,46 @@ get_header(); ?>
 							single_tag_title();
 
 						elseif ( is_author() ) :
-							printf( __( 'Author: %s', 'loft' ), '<span class="vcard">' . get_the_author() . '</span>' );
+							printf( __( 'Author: %s', 'neptune' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'loft' ), '<span>' . get_the_date() . '</span>' );
+							printf( __( 'Day: %s', 'neptune' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'loft' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'loft' ) ) . '</span>' );
+							printf( __( 'Month: %s', 'neptune' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'neptune' ) ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'loft' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'loft' ) ) . '</span>' );
+							printf( __( 'Year: %s', 'neptune' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'neptune' ) ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'loft' );
+							_e( 'Asides', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'loft' );
+							_e( 'Galleries', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'loft' );
+							_e( 'Images', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'loft' );
+							_e( 'Videos', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'loft' );
+							_e( 'Quotes', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'loft' );
+							_e( 'Links', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-status' ) ) :
-							_e( 'Statuses', 'loft' );
+							_e( 'Statuses', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audios', 'loft' );
+							_e( 'Audios', 'neptune' );
 
 						elseif ( is_tax( 'post_format', 'post-format-chat' ) ) :
-							_e( 'Chats', 'loft' );
+							_e( 'Chats', 'neptune' );
 
 						else :
-							_e( 'Archives', 'loft' );
+							_e( 'Archives', 'neptune' );
 
 						endif;
 					?>
@@ -90,7 +90,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php loft_paging_nav(); ?>
+			<?php neptune_paging_nav(); ?>
 
 		<?php else : ?>
 

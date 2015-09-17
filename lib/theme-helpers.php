@@ -2,7 +2,7 @@
 /**
  * Helper functions for use in other areas of the theme
  *
- * @package loft
+ * @package neptune
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @return void
  */
-function loft_add_capabilities( $posttype ) {
+function neptune_add_capabilities( $posttype ) {
 	// gets the author role
 	$role = get_role( 'administrator' );
 

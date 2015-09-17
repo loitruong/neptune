@@ -1,22 +1,22 @@
 <?php
 /*
-  loft main Theme Setting Page
+  neptune main Theme Setting Page
 */
 
-class loftMainThemeSettings
+class neptuneMainThemeSettings
 {
 
   public function __construct()
   {
     //add main settings page
-    add_action( 'admin_menu', array( $this, 'loft_add_main_settings_page' ) );
+    add_action( 'admin_menu', array( $this, 'neptune_add_main_settings_page' ) );
     //add Header Settings Page
     include_once('header-settings.php');
   }
   /**
   * Add settings page
   */
-  public function loft_add_main_settings_page()
+  public function neptune_add_main_settings_page()
   {
       add_menu_page(
         'Main Settings', 
@@ -54,7 +54,7 @@ class loftMainThemeSettings
 
 
 }// class end
-$mainThemeSettings = new loftMainThemeSettings();
+$mainThemeSettings = new neptuneMainThemeSettings();
 
 
   ?>

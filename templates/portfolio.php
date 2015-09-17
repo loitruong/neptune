@@ -4,7 +4,7 @@
  *
  * Displays content for portfolio page layouts
  *
- * @package loft
+ * @package neptune
  */
 
 get_header(); ?>

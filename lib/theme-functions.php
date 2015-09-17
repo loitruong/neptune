@@ -1,15 +1,15 @@
 <?php
 /**
- * loft theme functions definted in /lib/init.php
+ * neptune theme functions definted in /lib/init.php
  *
- * @package loft
+ * @package neptune
  */
 
 /**
  * Enqueue scripts
  */
-function loft_scripts() {
-	wp_enqueue_style( 'loft-style', get_stylesheet_uri(), array(), LOFT_VERSION );
+function neptune_scripts() {
+	wp_enqueue_style( 'neptune-style', get_stylesheet_uri(), array(), LOFT_VERSION );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -25,10 +25,10 @@ function loft_scripts() {
 /**
  * Register Widget Areas
  */
-function loft_widgets_init() {
+function neptune_widgets_init() {
 	// Main Sidebar
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'loft' ),
+		'name'          => __( 'Sidebar', 'neptune' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -41,7 +41,7 @@ function loft_widgets_init() {
 /**
  * Remove Dashboard Meta Boxes
  */
-function loft_remove_dashboard_widgets() {
+function neptune_remove_dashboard_widgets() {
 	global $wp_meta_boxes;
 	// unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
 	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
@@ -56,7 +56,7 @@ function loft_remove_dashboard_widgets() {
 /**
  * Change Admin Menu Order
  */
-function loft_custom_menu_order( $menu_ord ) {
+function neptune_custom_menu_order( $menu_ord ) {
 	if ( !$menu_ord ) return true;
 	return array(
 		// 'index.php', // Dashboard
@@ -80,14 +80,14 @@ function loft_custom_menu_order( $menu_ord ) {
 /**
  * Hide Admin Areas that are not used
  */
-function loft_remove_menu_pages() {
+function neptune_remove_menu_pages() {
 	// remove_menu_page( 'link-manager.php' );
 }
 
 /**
  * Remove default link for images
  */
-function loft_imagelink_setup() {
+function neptune_imagelink_setup() {
 	$image_set = get_option( 'image_default_link_type' );
 	if ( $image_set !== 'none' ) {
 		update_option( 'image_default_link_type', 'none' );
@@ -97,7 +97,7 @@ function loft_imagelink_setup() {
 /**
  * Remove Query Strings From Static Resources
  */
-function loft_remove_script_version( $src ){
+function neptune_remove_script_version( $src ){
 	$parts = explode( '?ver', $src );
 	return $parts[0];
 }
@@ -105,7 +105,7 @@ function loft_remove_script_version( $src ){
 /**
  * Remove Read More Jump
  */
-function loft_remove_more_jump_link( $link ) {
+function neptune_remove_more_jump_link( $link ) {
 	$offset = strpos( $link, '#more-' );
 	if ($offset) {
 		$end = strpos( $link, '"',$offset );

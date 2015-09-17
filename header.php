@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package loft
+ * @package neptune
  */
 ?>
 
@@ -32,7 +32,7 @@
 
 <div id="page" class="hfeed site">
 
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'loft' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'neptune' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 

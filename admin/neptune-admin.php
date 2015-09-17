@@ -1,7 +1,7 @@
 <?php
-if (!class_exists('loft_admin'))
+if (!class_exists('neptune_admin'))
 {
-  class loft_admin
+  class neptune_admin
   {
 
     public function __construct()
@@ -12,13 +12,13 @@ if (!class_exists('loft_admin'))
       
 
       //Add Script to admin panel
-      add_action( 'admin_enqueue_scripts', array($this, 'loft_admin_scripts' ) );
+      add_action( 'admin_enqueue_scripts', array($this, 'neptune_admin_scripts' ) );
 
     }
     /**
       * @desc put scripts and styles in admin page
     */
-    function loft_admin_scripts() {
+    function neptune_admin_scripts() {
       wp_enqueue_style('main-style', get_template_directory_uri()."/style-admin.css", array(), null);
       wp_enqueue_style('thickbox');
       wp_enqueue_script('jquery');
@@ -35,4 +35,4 @@ if (!class_exists('loft_admin'))
 
   }// class end
 }
-$loft_admin = new loft_admin();
+$neptune_admin = new neptune_admin();

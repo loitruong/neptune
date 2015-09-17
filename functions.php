@@ -1,8 +1,8 @@
 <?php
 /**
- * loft functions and definitions
+ * neptune functions and definitions
  *
- * @package loft
+ * @package neptune
  */
 
 define( 'LOFT_VERSION', '1.0.0' );
@@ -29,4 +29,4 @@ require get_template_directory() . '/lib/inc/customizer.php';
 require get_template_directory() . '/lib/inc/jetpack.php';
 
 //All Admin stufff 
-require get_template_directory() . '/admin/loft-admin.php';
+require get_template_directory() . '/admin/neptune-admin.php';

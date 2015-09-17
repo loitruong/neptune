@@ -2,7 +2,7 @@
 /**
  * The template used for displaying page content in page.php
  *
- * @package loft
+ * @package neptune
  */
 ?>
 
@@ -15,12 +15,12 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'loft' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'neptune' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div>
 	<footer class="entry-footer">
-		<?php edit_post_link( __( 'Edit', 'loft' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'neptune' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer>
 </article>

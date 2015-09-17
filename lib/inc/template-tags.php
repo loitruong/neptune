@@ -4,29 +4,29 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package loft
+ * @package neptune
  */
 
-if ( ! function_exists( 'loft_paging_nav' ) ) :
+if ( ! function_exists( 'neptune_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
-function loft_paging_nav() {
+function neptune_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'loft' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'neptune' ); ?></h1>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'loft' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'neptune' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'loft' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'neptune' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -35,11 +35,11 @@ function loft_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'loft_post_nav' ) ) :
+if ( ! function_exists( 'neptune_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  */
-function loft_post_nav() {
+function neptune_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -49,11 +49,11 @@ function loft_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'loft' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'neptune' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'loft' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'loft' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'neptune' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'neptune' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -61,11 +61,11 @@ function loft_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'loft_posted_on' ) ) :
+if ( ! function_exists( 'neptune_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function loft_posted_on() {
+function neptune_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
@@ -79,12 +79,12 @@ function loft_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'loft' ),
+		_x( 'Posted on %s', 'post date', 'neptune' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'loft' ),
+		_x( 'by %s', 'post author', 'neptune' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
@@ -98,8 +98,8 @@ endif;
  *
  * @return bool
  */
-function loft_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'loft_categories' ) ) ) {
+function neptune_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'neptune_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -112,24 +112,24 @@ function loft_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'loft_categories', $all_the_cool_cats );
+		set_transient( 'neptune_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so loft_categorized_blog should return true.
+		// This blog has more than 1 category so neptune_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so loft_categorized_blog should return false.
+		// This blog has only 1 category so neptune_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in loft_categorized_blog.
+ * Flush out the transients used in neptune_categorized_blog.
  */
-function loft_category_transient_flusher() {
+function neptune_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'loft_categories' );
+	delete_transient( 'neptune_categories' );
 }
-add_action( 'edit_category', 'loft_category_transient_flusher' );
-add_action( 'save_post',     'loft_category_transient_flusher' );
+add_action( 'edit_category', 'neptune_category_transient_flusher' );
+add_action( 'save_post',     'neptune_category_transient_flusher' );

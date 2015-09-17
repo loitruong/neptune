@@ -1,9 +1,9 @@
 <?php
 /*
-  loft Header Theme Setting Page
+  neptune Header Theme Setting Page
 */
 
-class loftHeaderThemeSettings
+class neptuneHeaderThemeSettings
 {
 
   public function __construct()
@@ -32,7 +32,7 @@ class loftHeaderThemeSettings
     */
    function header_setting_page()
    {
-    $this->options = get_option( 'loft_header_option' );
+    $this->options = get_option( 'neptune_header_option' );
     $availableMenuOptions = isset( $this->options['header_option_fields'] ) ? esc_attr( $this->options['header_option_fields']) : '';
     $availableMenuOptionsArray = explode (',', $availableMenuOptions);
     ?>
@@ -53,7 +53,7 @@ class loftHeaderThemeSettings
           <option value="1" <?php echo ($this->options['header_layout'] == 'layout-1' ? "selected" : "") ?>>Layout 1</option>
           <option value="2" <?php echo ($this->options['header_layout'] == 'layout-2' ? "selected" : "") ?>>Layout 2</option>
         </select>
-        <div class="layout layout-1 <?php echo ($this->options['header_layout'] == 'layout-1' ? "" : "display-none") ?>">
+        <div class="layout layout-1 <?php echo ($this->options['header_layout'] == 'layout-1' || !isset($this->options['header_layout']) ? "" : "display-none") ?>">
           <div class="header-options">
             <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Social Medias") === false  ? "" : "display-none") ?>">
               Social Medias 
@@ -120,19 +120,19 @@ class loftHeaderThemeSettings
           </div>
         </div>
       <form method="post" action="options.php">
-            <?php settings_fields( 'loft_header_fields' );  ?>
+            <?php settings_fields( 'neptune_header_fields' );  ?>
             <?php do_settings_sections( 'header-settings' ); ?>
             <div class="display-none"> 
                 <?php printf(
-                    '<input type="text" id="fixed_header" name="loft_header_option[fixed_header]" value="%s" />',
+                    '<input type="text" id="fixed_header" name="neptune_header_option[fixed_header]" value="%s" />',
                     isset( $this->options['fixed_header'] ) ? esc_attr( $this->options['fixed_header']) : ''
                 ); ?>
                 <?php printf(
-                    '<input type="text" id="header_layout" name="loft_header_option[header_layout]" value="%s" />',
+                    '<input type="text" id="header_layout" name="neptune_header_option[header_layout]" value="%s" />',
                     isset( $this->options['header_layout'] ) ? esc_attr( $this->options['header_layout']) : 'layout-1'
                 ); ?>
                 <?php printf(
-                    '<input type="text" id="header_option_fields" name="loft_header_option[header_option_fields]" value="%s" />',
+                    '<input type="text" id="header_option_fields" name="neptune_header_option[header_option_fields]" value="%s" />',
                     isset( $this->options['header_option_fields'] ) ? esc_attr( $this->options['header_option_fields']) : ''
                 ); ?>
             </div>
@@ -145,8 +145,8 @@ class loftHeaderThemeSettings
 
 	function register_settings(){
 		register_setting(
-		          'loft_header_fields', // Option group
-		          'loft_header_option' // Option name
+		          'neptune_header_fields', // Option group
+		          'neptune_header_option' // Option name
 		        //  array( $this, 'sanitize' ) // Sanitize
 		);
 	}
@@ -155,7 +155,7 @@ class loftHeaderThemeSettings
 
 
 }// class end
-$headerThemeSettings = new loftHeaderThemeSettings();
+$headerThemeSettings = new neptuneHeaderThemeSettings();
 
 
 
