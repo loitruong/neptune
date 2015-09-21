@@ -1,6 +1,6 @@
 /*
 
-	Main Settings Javascript
+	Footer Settings Javascript
 
 */
 jQuery(function($){
@@ -9,14 +9,19 @@ $(document).ready(function(){
 		drag and sort UI for Settings page
 	*/
 	$( ".sortable" ).sortable({
+		connectWith: ".sortable",
 	     revert: true,
 	     update: function() {
 			//save on the setting fields
 			if($(this).attr("data-bindID") != undefined){
 				var target = "#" + $(this).attr("data-bindID");
 				$(target).val('');
-				cloneSortItems(target);
+				cloneSortItems(target,$(this));
 			}
+			$(".sortable").removeClass("target");
+	     },
+	     sort: function(){
+	     	$(".sortable").addClass("target");
 	     }
 	   });
    $( ".draggable" ).draggable({
@@ -40,8 +45,8 @@ $(document).ready(function(){
 	*	@para target to recieve the clones, element should be in ID. exp "#hello"
 	*	@return null
    	*/
-	function cloneSortItems($target){
-		$(".sortable >div").each(function(i){
+	function cloneSortItems($target,$sortable){
+		$sortable.find(">div").each(function(i){
 			if (i == 0) {
 				$($target).val($(this).text());
 			}else{
@@ -54,8 +59,9 @@ $(document).ready(function(){
    $(".sortable").on("dblclick",">div",function(){ 
 		var button_text = $(this).text();
 		var target = "#" + $(this).parents(".sortable").attr("data-bindID");
-		$("#header_option_fields").val('');
-		$(this).parents(".layout").find(".header-options .draggable").each(function(){
+		var sortable = $(this).parents(".sortable");
+		$(target).val('');
+		$(this).parents(".layout").find(".footer-options .draggable").each(function(){
 			if(button_text.replace(/\s/g, '') == $(this).text().replace(/\s/g, '')){
 				$(this).show().css("display","inline-block");
 				$(this).removeClass("display-none");
@@ -63,7 +69,7 @@ $(document).ready(function(){
 		}); 
 		$(this).remove();
 		
-		cloneSortItems(target);
+		cloneSortItems(target, sortable);
    });
    /*
    	Select Layout event handle
@@ -74,27 +80,21 @@ $(document).ready(function(){
 		$(selector).show();
 		var bindID = "#" + $(this).attr("data-bindID");
 		$(bindID).val("layout-" + $(this).val());
-		//reset header option fields, when layer change
+		//reset footer option fields, when layer change
 		$(".draggable").removeClass("display-none");
 		$( ".draggable" ).show().css("display","inline-block");
 		$(".sortable").empty();
 
-		$("#header_option_fields").val("");
+		// this will empty all the footer option fields when we change layout
+		$("#footer_option_fields_1 , #footer_option_fields_2 , #footer_option_fields_3 , #footer_option_fields_4").val("");
    });
-   /*
-	Switch Button for #fixed_header
-   */
-   	$('.switch-btn').on('click', function(){
-		if($(this).hasClass("yes-please")){
-			$(this).find(".round-block").animate({"left":"50%"},200);
-			$(this).removeClass("yes-please");
-			$("#fixed_header").val("false");
-		}else{
-			$(this).find(".round-block").animate({"left":"0"},200);
-			$(this).addClass("yes-please");
-			$("#fixed_header").val("true");
-		}
-	});
+      /*
+      	Select Menu Event
+      */
+      $(".select-menu-option").on("change", function(){
+   		$("#footer_menu_id").val($(this).val());
+      });
+
 });
 });
 

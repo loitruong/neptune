@@ -11,6 +11,8 @@ class neptuneHeaderThemeSettings
     //add main setting page
     add_action( 'admin_menu', array( $this, 'header_settings_page' ) );
     add_action( 'admin_init', array( $this, 'register_settings' ) );
+    //including javascript only for this page
+    add_action( 'admin_enqueue_scripts', array($this, 'header_scripts' ) );
   }
   /**
   * Add Header settings page
@@ -32,14 +34,17 @@ class neptuneHeaderThemeSettings
     */
    function header_setting_page()
    {
+    //initial variables
     $this->options = get_option( 'neptune_header_option' );
     $availableMenuOptions = isset( $this->options['header_option_fields'] ) ? esc_attr( $this->options['header_option_fields']) : '';
     $availableMenuOptionsArray = explode (',', $availableMenuOptions);
+    $menus = get_terms( 'nav_menu', array( 'hide_empty' => true ) );
     ?>
     <div class="wrap">
         <h2 class="nav-tab-wrapper">
           <a class='nav-tab' href='?page=main-theme-settings'>Main Settings</a>
           <a class='nav-tab nav-tab-active' href='?page=header-settings'>Header Settings</a>
+          <a class='nav-tab' href='?page=footer-settings'>Footer Settings</a>
         </h2>
         <h1>Header Settings</h1>
         <h3>Fixed Header?</h3>
@@ -55,8 +60,8 @@ class neptuneHeaderThemeSettings
         </select>
         <div class="layout layout-1 <?php echo ($this->options['header_layout'] == 'layout-1' || !isset($this->options['header_layout']) ? "" : "display-none") ?>">
           <div class="header-options">
-            <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Social Medias") === false  ? "" : "display-none") ?>">
-              Social Medias 
+            <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Social Media") === false  ? "" : "display-none") ?>">
+              Social Media 
             </div>
             <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Phone") === false  ? "" : "display-none") ?>">
               Phone 
@@ -70,7 +75,19 @@ class neptuneHeaderThemeSettings
           </div>
           <div class="row layout-container">
             <div class="col-sm-2"><div class="cover">Logo</div></div>
-            <div class="col-sm-5"><div class="cover">Menu</div></div>
+            <div class="col-sm-5">
+              <div class="cover menu">
+                <?php if($menus != null){ ?>
+                    <select class="select-menu-option">
+                      <?php foreach ($menus as $menu): ?>
+                        <option value="<?= $menu->term_id ?>" <?php echo ($this->options['header_menu_id'] == $menu->term_id ? "selected" : "") ?>><?= $menu->name ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                <?php }else{ ?>
+                No available menu. Please click <a href="<?=admin_url('nav-menus.php')?>">this link</a> to make one.
+                <?php } ?>
+              </div>
+            </div>
             <div class="col-sm-5">
               <div class="sortable" data-bindID="header_option_fields">
               <?php if ($this->options['header_layout'] == 'layout-1') { ?>
@@ -88,8 +105,8 @@ class neptuneHeaderThemeSettings
         </div>
         <div class="layout layout-2 <?php echo ($this->options['header_layout'] == 'layout-2' ? "" : "display-none") ?>">
           <div class="header-options">
-              <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Social Medias") === false  ? "" : "display-none") ?>">
-                Social Medias 
+              <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Social Media") === false  ? "" : "display-none") ?>">
+                Social Media
               </div>
               <div class="draggable  <?php echo ( strpos($availableMenuOptions, "Phone") === false  ? "" : "display-none") ?>">
                 Phone 
@@ -115,7 +132,17 @@ class neptuneHeaderThemeSettings
                    <?php endforeach ?> 
               <?php } ?>
               </div>
-              <div class="cover">Menu</div>
+              <div class="cover menu">
+                  <?php if($menus != null){ ?>
+                      <select class="select-menu-option">
+                        <?php foreach ($menus as $menu): ?>
+                          <option value="<?= $menu->term_id ?>" <?php echo ($this->options['header_menu_id'] == $menu->term_id ? "selected" : "") ?>><?= $menu->name ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                  <?php }else{ ?>
+                  No available menu. Please click <a href="<?=admin_url('nav-menus.php')?>">this link</a> to make one.
+                  <?php } ?>
+              </div>
             </div>
           </div>
         </div>
@@ -130,6 +157,10 @@ class neptuneHeaderThemeSettings
                 <?php printf(
                     '<input type="text" id="header_layout" name="neptune_header_option[header_layout]" value="%s" />',
                     isset( $this->options['header_layout'] ) ? esc_attr( $this->options['header_layout']) : 'layout-1'
+                ); ?>
+                <?php printf(
+                    '<input type="text" id="header_menu_id" name="neptune_header_option[header_menu_id]" value="%s" />',
+                    isset( $this->options['header_menu_id'] ) ? esc_attr( $this->options['header_menu_id']) : ''
                 ); ?>
                 <?php printf(
                     '<input type="text" id="header_option_fields" name="neptune_header_option[header_option_fields]" value="%s" />',
@@ -151,9 +182,13 @@ class neptuneHeaderThemeSettings
 		);
 	}
 
-
-
-
+  //This function is for enqueue script only for this page nothing else
+  function header_scripts(){
+    $current_screen = get_current_screen();
+    if ($current_screen->base == 'main-settings_page_header-settings') {
+      wp_enqueue_script('headersettingjs', get_template_directory_uri()."/admin/js/settings/header-settings.js", array(), null);
+    }
+  }
 }// class end
 $headerThemeSettings = new neptuneHeaderThemeSettings();
 
