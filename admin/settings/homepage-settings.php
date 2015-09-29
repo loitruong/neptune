@@ -45,97 +45,103 @@ class neptuneHomepageSettings
         <h1>
           Homepage Settings
         </h1>
-        <h2 class="nav-tab-wrapper">
-          <a class='nav-tab nav-tab-active' data-target="#slider-tab">Slider / Banner</a>
-          <a class='nav-tab' data-target="#layout-tab">Layout</a>
-        </h2>
-        <div class="tab-content" id="slider-tab">
-          <div class="slider sortable">
-          <?php if ( (is_array($banners) || is_object($banners)) && $banners != null ){ ?>
-            <?php foreach ($banners as $banner): ?>
-              <div class="banner clearfix">
-                <div class="banner-image">
-                <?php if ($banner->attachmentID != null){
-                    echo wp_get_attachment_image( $banner->attachmentID, "thumbnail", '', array(
-                      'data-attachmentID' => $banner->attachmentID,
-                      'class'   => 'img-responsive'
-                    ));
-                  }else{
-                    echo '<img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Add+Banner&w=150&h=150"/>';
-                  } ?>
+        <div class="row">
+          <div class="col-sm-9">
+            <h2 class="nav-tab-wrapper">
+              <a class='nav-tab nav-tab-active' data-target="#slider-tab">Slider / Banner</a>
+              <a class='nav-tab' data-target="#layout-tab">Layout</a>
+            </h2>
+            <div class="tab-content" id="slider-tab">
+              <div class="slider sortable">
+              <?php if ( (is_array($banners) || is_object($banners)) && $banners != null ){ ?>
+                <?php foreach ($banners as $banner): ?>
+                  <div class="banner clearfix">
+                    <div class="banner-image">
+                    <?php if ($banner->attachmentID != null){
+                        echo wp_get_attachment_image( $banner->attachmentID, "thumbnail", '', array(
+                          'data-attachmentID' => $banner->attachmentID,
+                          'class'   => 'img-responsive'
+                        ));
+                      }else{
+                        echo '<img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Add+Banner&w=150&h=150"/>';
+                      } ?>
 
-                </div>
-                <div class="banner-fields">
-                  <div class="field-group">
-                    <label>Main Text</label>
-                    <input type="text" class="main-text" value="<?=$banner->mainText?>">
+                    </div>
+                    <div class="banner-fields">
+                      <div class="field-group">
+                        <label>Main Text</label>
+                        <input type="text" class="main-text" value="<?=$banner->mainText?>">
+                      </div>
+                      <div class="field-group">
+                        <label>Sub Text</label>
+                        <textarea class="sub-text"><?=$banner->subText?></textarea>
+                      </div>
+                      <div class="field-group">
+                        <label>Banner text at</label>
+                        <select class="banner-text-side">
+                            <option value="left" <?=($banner->sideText == "left" ? "selected" : "" )?>>left side</option>
+                            <option value="center" <?=($banner->sideText == "center" ? "selected" : "" )?>>center side</option>
+                            <option value="right" <?=($banner->sideText == "right" ? "selected" : "" )?>>right side</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="banner-remove">
+                      <span class="dashicons dashicons-minus"></span>
+                    </div>
                   </div>
-                  <div class="field-group">
-                    <label>Sub Text</label>
-                    <textarea class="sub-text"><?=$banner->subText?></textarea>
-                  </div>
-                  <div class="field-group">
-                    <label>Banner text at</label>
-                    <select class="banner-text-side">
-                        <option value="left" <?=($banner->sideText == "left" ? "selected" : "" )?>>left side</option>
-                        <option value="center" <?=($banner->sideText == "center" ? "selected" : "" )?>>center side</option>
-                        <option value="right" <?=($banner->sideText == "right" ? "selected" : "" )?>>right side</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="banner-remove">
-                  <span class="dashicons dashicons-minus"></span>
-                </div>
+                <?php endforeach; ?>
+              <?php }else { ?>
+                    <div class="banner clearfix">
+                      <div class="banner-image">
+                        <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Add+Banner&w=150&h=150"/>
+                      </div>
+                      <div class="banner-fields">
+                        <div class="field-group">
+                          <label>Main Text</label>
+                          <input type="text" class="main-text">
+                        </div>
+                        <div class="field-group">
+                          <label>Sub Text</label>
+                          <textarea class="sub-text"></textarea>
+                        </div>
+                        <div class="field-group">
+                          <label>Banner text at</label>
+                          <select class="banner-text-side">
+                              <option value="left">left side</option>
+                              <option value="center">center side</option>
+                              <option value="right">right side</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="banner-remove">
+                        <span class="dashicons dashicons-minus"></span>
+                      </div>
+                    </div>
+                <?php } ?>
               </div>
-            <?php endforeach; ?>
-          <?php }else { ?>
-                <div class="banner clearfix">
-                  <div class="banner-image">
-                    <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Add+Banner&w=150&h=150"/>
-                  </div>
-                  <div class="banner-fields">
-                    <div class="field-group">
-                      <label>Main Text</label>
-                      <input type="text" class="main-text">
-                    </div>
-                    <div class="field-group">
-                      <label>Sub Text</label>
-                      <textarea class="sub-text"></textarea>
-                    </div>
-                    <div class="field-group">
-                      <label>Banner text at</label>
-                      <select class="banner-text-side">
-                          <option value="left">left side</option>
-                          <option value="center">center side</option>
-                          <option value="right">right side</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="banner-remove">
-                    <span class="dashicons dashicons-minus"></span>
-                  </div>
-                </div>
-            <?php } ?>
+              <div class="button add-banner">Add Banner</div>
+            </div>
+            <div class="tab-content" id="layout-tab">
+              <div class="grid-system">
+
+                <div class="button add-layout">Add Layout</div>
+              </div>
+            </div>
           </div>
-          <div class="button add-banner">Add Banner</div>
+          <div class="col-sm-3">
+            <form method="post" action="options.php" class="save-form">
+                  <?php settings_fields( 'neptune_homepage_setting_fields' );  ?>
+                  <?php do_settings_sections( 'homepage-settings' ); ?>
+                  <div class="display-none"> 
+                      <?php printf(
+                          '<input type="text" id="banner-option-field" name="neptune_homepage_setting_option[banner]" value="%s" />',
+                          isset( $this->options['banner'] ) ? esc_attr( $this->options['banner']) : ''
+                      ); ?>
+                  </div>
+                  <input type="submit" name="submit" id="submit" class="btn" value="Save Changes">
+            </form>
+          </div>
         </div>
-        <div class="tab-content" id="layout-tab">
-          
-        </div>
-
-        <form method="post" action="options.php">
-              <?php settings_fields( 'neptune_homepage_setting_fields' );  ?>
-              <?php do_settings_sections( 'homepage-settings' ); ?>
-              <div class="display-none"> 
-                  <?php printf(
-                      '<input type="text" id="banner-option-field" name="neptune_homepage_setting_option[banner]" value="%s" />',
-                      isset( $this->options['banner'] ) ? esc_attr( $this->options['banner']) : ''
-                  ); ?>
-              </div>
-              <br>
-              <input type="submit" name="submit" id="submit" class="btn" value="Save Changes">
-        </form>
-
     </div>
     <?php
    }

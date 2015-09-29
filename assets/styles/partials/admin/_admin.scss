@@ -205,8 +205,14 @@
 .nav-tab{
 	cursor: pointer;
 }
+.save-form{
+	text-align: center;
+	padding: 20px 0;
+	border: 1px solid #ccc;
+}
 .slider{
 	margin: 20px 0;
+	position: relative;
 	input,textarea{
 		width: 100%;
 		resize: vertical;
@@ -215,7 +221,7 @@
 		border: 1px solid $color-blue;
 		padding: 15px;
 		position: relative;
-		width: 700px;
+		width: 100%;
 		cursor: grabbing;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
@@ -227,14 +233,17 @@
 	}
 	.banner-image{
 		display: inline-block;
-		float: left;
 		cursor: pointer;
+		position: absolute;
+		left: 15px;
+		top: 15px;
 	}
 	.banner-fields{
 		display: inline-block;
-		width: 485px;
 		margin: 11px 15px 0;
-		float: left;
+		width: 100%;
+		padding-left: 165px;
+		padding-right:  20px;
 	}
 	.banner-remove{
 		display:inline-block;
