@@ -9,7 +9,8 @@ if (!class_exists('neptune_admin'))
       //Theme settings pages
       include_once('settings/main-theme-settings.php');
       
-      
+      //Add Homepage Settings
+      include_once('settings/homepage-settings.php');
 
       //Add Script to admin panel
       add_action( 'admin_enqueue_scripts', array($this, 'neptune_admin_scripts' ) );

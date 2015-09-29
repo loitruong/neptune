@@ -10,6 +10,11 @@
 		clear: both;
 	}
 }
+.img-responsive{
+	max-width: 100%;
+	display: inline-block;
+	height: auto;
+}
 .display-none{
 	display: none;
 }
@@ -195,4 +200,63 @@
 	padding: 15px;
 	line-height: 45px;
 	margin-top: 5px;
+}
+// admin homepage-banners
+.nav-tab{
+	cursor: pointer;
+}
+.slider{
+	margin: 20px 0;
+	input,textarea{
+		width: 100%;
+		resize: vertical;
+	}
+	.banner{
+		border: 1px solid $color-blue;
+		padding: 15px;
+		position: relative;
+		width: 700px;
+		cursor: grabbing;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		margin-bottom: 10px;
+	}
+	.banner-image{
+		display: inline-block;
+		float: left;
+		cursor: pointer;
+	}
+	.banner-fields{
+		display: inline-block;
+		width: 485px;
+		margin: 11px 15px 0;
+		float: left;
+	}
+	.banner-remove{
+		display:inline-block;
+		float: left;
+		width: 30px;
+		height: 30px;
+		position:absolute;
+		right: -15px;
+		z-index: 1;
+		top: 50%;
+		@include prefix("transform","translateY(-15px)");
+		border: 1px solid $color-blue;
+		padding-top: 3px;
+		text-align: center;
+		@include prefix("border-radius", 50%);
+		color: $color-blue;
+		cursor: pointer;
+		background-color: #F1F1F1;
+		@include prefix('transition', "ease .3s all");
+		&:hover,&:focus,&:active{
+			background-color: $color-blue;
+			color: white;
+		}
+	}
 }

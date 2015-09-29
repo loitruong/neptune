@@ -29,7 +29,9 @@ class neptuneMainThemeSettings
         'Main Settings', 
         'manage_options', 
         'main-theme-settings',
-        array($this, 'main_theme_setting_page')
+        array($this, 'main_theme_setting_page'),
+        'dashicons-admin-settings',
+        26
       );
   }
 
@@ -287,7 +289,7 @@ class neptuneMainThemeSettings
   function main_settings_scripts(){
    $current_screen = get_current_screen();
    if ($current_screen->base == 'toplevel_page_main-theme-settings') {
-     add_filter( 'media_view_strings', array( $this, 'lec_my_view_strings') );
+     add_filter( 'media_view_strings', array( $this, 'disable_media_buttons') );
      //wp_enqueue_script('iris');
      wp_enqueue_script('media-upload');
      wp_enqueue_script('mainsettingjs', get_template_directory_uri()."/admin/js/settings/main-settings.js", array(), null);
@@ -306,7 +308,7 @@ class neptuneMainThemeSettings
   }
 
   //disable buttons on media
-  function lec_my_view_strings( $strings) {
+  function disable_media_buttons( $strings) {
     // disable some views
     $disabled = array(  'createNewGallery', 'insertFromUrlTitle', 'createGalleryTitle' );
     foreach( $disabled as $string )
@@ -317,6 +319,3 @@ class neptuneMainThemeSettings
 
 }// class end
 $mainThemeSettings = new neptuneMainThemeSettings();
-
-
-  ?>

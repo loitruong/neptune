@@ -68,7 +68,11 @@ img {
 		z-index: 100000;
 	}
 }
-
+.img-responsive{
+	max-width: 100%;
+	display: inline-block;
+	height: auto;
+}
 [role="button"] {
  	cursor: pointer;
 }
